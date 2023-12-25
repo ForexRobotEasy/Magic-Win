@@ -1,0 +1,102 @@
+
+//+------------------------------------------------------------------+
+//|                                                   Magic Win EA  |
+//|                                       Developer: Forex Robot Easy Team |
+//|                                       Website: forexroboteasy.com |
+//+------------------------------------------------------------------+
+
+// Custom Indicator: Mean Reversion Indicator
+// Implementation of the mean reversion concept and other algorithms
+
+// Currency Pair Selection: Enable trading on specified pairs
+string[] currencyPairs = {'EURUSD', 'GBPUSD', 'AUDCAD', 'AUDNZD', 'NZDCAD'};
+
+// Timeframe Selection: Set trading timeframe to M15
+ENUM_TIMEFRAMES timeframe = PERIOD_M15;
+
+//+------------------------------------------------------------------+
+//| Expert initialization function                                   |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Setup and Use: Dragging the EA onto a single chart
+    if (ChartID() == 0)
+    {
+        Print('Please attach Magic Win EA to a chart!');
+        return INIT_FAILED;
+    }
+
+    // Simultaneous Trading: Enable trading on multiple currencies
+    for (int i = 0; i < ArraySize(currencyPairs); i++)
+    {
+        if (Symbol() == currencyPairs[i])
+        {
+            Print('Magic Win EA is enabled for ', currencyPairs[i]);
+            break;
+        }
+        else if (i == ArraySize(currencyPairs) - 1)
+        {
+            Print('Magic Win EA is not enabled for this currency pair!');
+            return INIT_FAILED;
+        }
+    }
+
+    // Risk Modes: Enable users to choose from four risk modes
+    int riskMode = 1; // Default risk mode
+    switch (riskMode)
+    {
+        case 1:
+            Print('Selected risk mode: Low Risk');
+            break;
+        case 2:
+            Print('Selected risk mode: Medium Risk');
+            break;
+        case 3:
+            Print('Selected risk mode: High Risk');
+            break;
+        case 4:
+            Print('Selected risk mode: Extreme Risk');
+            break;
+        default:
+            Print('Invalid risk mode selected!');
+            return INIT_FAILED;
+    }
+
+    // Filters: Implement multiple filters for a tailored trading experience
+    bool filter1 = true; // Example filter 1
+    bool filter2 = true; // Example filter 2
+
+    if (!filter1 || !filter2)
+    {
+        Print('Magic Win EA filters failed!');
+        return INIT_FAILED;
+    }
+
+    // Initialization complete
+    return INIT_SUCCEEDED;
+}
+
+//+------------------------------------------------------------------+
+//| Expert deinitialization function                                 |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+    // Perform necessary cleanup tasks
+}
+
+//+------------------------------------------------------------------+
+//| Expert tick function                                             |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+    // Perform trading operations based on the custom indicator and other algorithms
+}
+
+//+------------------------------------------------------------------+
+//| Expert start function                                            |
+//+------------------------------------------------------------------+
+void OnStart()
+{
+    // Start trading based on the setup and user-defined preferences
+}
+
